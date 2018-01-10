@@ -1,7 +1,6 @@
 package lexer
 
 import (
-	"fmt"
 	"testing"
 	"meow/token"
 )
@@ -16,6 +15,8 @@ func TestNextToken(t *testing.T) {
 	};
 
 	let result = add(five, ten);
+	!-/*5;
+	5 < 10 > 5;
 	`
 
 	tests := []struct {
@@ -58,6 +59,12 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
+		{token.BANG, "!"},
+		{token.MINUS, "-"},
+		{token.SLASH, "/"},
+		{token.ASTERISK, "*"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
 	}
 
 	l := New(input)
@@ -65,7 +72,7 @@ func TestNextToken(t *testing.T) {
 	for i, tt := range tests {
 		tok := l.NextToken()
 
-		fmt.Print(tok)
+		// fmt.Print(tok)
 		if tok.Type != tt.expectedType {
 			t.Fatalf("tests[%d] - tokentype wrong. expected to get %q, got what we got was %q", i, tt.expectedType, tok.Type)
 		}
