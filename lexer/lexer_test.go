@@ -2,7 +2,6 @@ package lexer
 
 import (
 	"testing"
-
 	"meow/token"
 )
 
@@ -14,7 +13,7 @@ func TestNextToken(t *testing.T) {
 		expctedLiteral string
 	}{
 		{token.ASSIGN, "="},
-		{token.PLUS, "="},
+		{token.PLUS, "+"},
 		{token.LPAREN, "("},
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
